@@ -6,13 +6,13 @@ let
     if variant == "CUDA" || variant == "CUDA-BETA" then
       [
         cudaPackages.cudatoolkit
-        xorg.libXi
-        xorg.libXmu
+        libxi
+        libxmu
         freeglut
-        xorg.libXext
-        xorg.libX11
-        xorg.libXv
-        xorg.libXrandr
+        libxext
+        libx11
+        libxv
+        libxrandr
         zlib
 
         # for xformers
@@ -43,6 +43,10 @@ pkgs.mkShell rec {
       (python312.withPackages (
         p: with p; [
           pip
+          requests
+          # torch-bin
+          opencv-python
+          gguf
         ]
       ))
       stdenv.cc.cc.lib
